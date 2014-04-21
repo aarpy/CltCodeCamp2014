@@ -10,8 +10,8 @@
 
 <div class="row marketing connection">
 	<div class="pull-right text-right">
-			User: <span class="username">{{username}}</span><br />
-			Connected to: <span class="servername">{{servername}}</span>
+			<span class="username">@{{username}}</span><br />
+			Connected to <span class="servername">{{servername}}</span>
 	</div>
 </div>
 
@@ -37,21 +37,20 @@
 	<ul>
 		<li ng-repeat="message in messages | reverse">
 			<span ng-show="message.type=='join'">
-				<span class="text-muted">@{{message.user}} joined</span>
+				<span class="text-muted">@{{message.username}} joined</span>
 			</span>
 			<span ng-show="message.type=='comment'">
-				<span class="username">@{{message.user}}:</span> {{message.content}}
+				<span class="username">@{{message.username}}:</span> {{message.content}}
 			</span>
 			<span ng-show="message.type=='left'">
-				<span class="text-muted">@{{message.user}} left</span>
+				<span class="text-muted">@{{message.username}} left</span>
 			</span>
 		</li>
 	</ul>
 </div>
 <div class="row marketing">
 	<button class="btn" ng-click="adduser()">Add User</button>
-	<button class="btn" ng-click="addmessage()">Add Message</button>
 </div>
 <div class="footer">
-	<p>♥ from the <a href="http://www.rdacorp.com/contact-us/">RDA Charlotte team</a></p>
+	<p>♥ from the <a href="http://www.rdacorp.com/contact-us/">RDA Charlotte</a> team</p>
 </div>

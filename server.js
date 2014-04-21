@@ -1,6 +1,7 @@
 'use strict';
 
-var express = require('express');
+var express = require('express'),
+    http = require('http');
 
 /**
  * Main application file
@@ -13,11 +14,25 @@ var config = require('./lib/config/config');
 
 // Setup Express
 var app = express();
+
+// Configuring socket.io connection
+console.log('creating http server');
+var server = http.createServer(app);
+
+console.log('starting socket.io');
+var io = require('socket.io').listen(server);
+
+console.log('configuring express and routes');
 require('./lib/config/express')(app);
 require('./lib/routes')(app);
 
+io.sockets.on('connection', function(socket) {
+  console.log('socket io started ---');
+  require('./lib/hub')(socket, io);
+});
+
 // Start server
-app.listen(config.port, config.ip, function () {
+server.listen(config.port, config.ip, function () {
   console.log('Express server listening on %s:%d, in %s mode', config.ip, config.port, app.get('env'));
 });
 
