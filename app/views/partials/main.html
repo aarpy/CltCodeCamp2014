@@ -1,6 +1,6 @@
 <div class="header">
 	<div class="score-container pull-right">
-		1000
+		{{usercount}}
 	</div>
 	<div>
 		<h3>Cloud Architecture Patterns Demo</h3>
@@ -35,7 +35,7 @@
 <div class="row marketing messages">
 	<h4>Messages</h4>
 	<ul>
-		<li ng-repeat="message in messages">
+		<li ng-repeat="message in messages | reverse">
 			<span ng-show="message.type=='join'">
 				<span class="text-muted">@{{message.user}} joined</span>
 			</span>
@@ -48,7 +48,10 @@
 		</li>
 	</ul>
 </div>
-
+<div class="row marketing">
+	<button class="btn" ng-click="adduser()">Add User</button>
+	<button class="btn" ng-click="addmessage()">Add Message</button>
+</div>
 <div class="footer">
 	<p>♥ from the <a href="http://www.rdacorp.com/contact-us/">RDA Charlotte team</a></p>
 </div>
