@@ -3,35 +3,49 @@
 		1000
 	</div>
 	<div>
-		<h3 class="text-muted">Cloud Architecture Patterns Demo</h3>
-		<span class="text-muted">Charlotte Code Camp 2014</span>
+		<h3>Cloud Architecture Patterns Demo</h3>
+		<span>Charlotte Code Camp 2014</span>
+	</div>
+</div>
+
+<div class="row marketing connection">
+	<div class="pull-right text-right">
+			User: <span class="username">{{username}}</span><br />
+			Connected to: <span class="servername">{{servername}}</span>
 	</div>
 </div>
 
 <div class="row marketing chat">
 	<form class="form-line" role="form">
 	  <div class="form-group">
-	    <div class="input-group col-xs-8">
-	      <input type="text" class="form-control">
+	    <div class="input-group col-lg-8 col-sm-8">
+	      <input type="text" class="form-control" placeholder="Enter message" ng-model="newmessage">
 	      <span class="input-group-btn">
-	        <button class="btn btn-default" type="button">Send Message</button>
+	        <button class="btn btn-default" type="button" ng-click='sendMessage()'>Send Message</button>
 	      </span>
 	    </div>
 	  </div>
 	  <div class="form-group">
-	    <button class="btn" type="button">Hello CodeCamp!</button>
-	    <button class="btn" type="button">Send Random Quote</button>
+	    <button class="btn" type="button" ng-click='sendHelloCodeCamp()'>Hello CodeCamp!</button>
+	    <button class="btn" type="button" ng-click='sendRandomQuote()'>Send Random Quote</button>
 	  </div>
 	</form>
 </div>
 
 <div class="row marketing messages">
 	<h4>Messages</h4>
-	<ul ng-repeat="message in messages">
-		<p>
-			<span class="username">{{message.user}}:</span>
-				{{message.content}}
+	<ul>
+		<li ng-repeat="message in messages">
+			<span ng-show="message.type=='join'">
+				<span class="text-muted">@{{message.user}} joined</span>
 			</span>
+			<span ng-show="message.type=='comment'">
+				<span class="username">@{{message.user}}:</span> {{message.content}}
+			</span>
+			<span ng-show="message.type=='left'">
+				<span class="text-muted">@{{message.user}} left</span>
+			</span>
+		</li>
 	</ul>
 </div>
 
