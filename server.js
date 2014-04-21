@@ -31,6 +31,9 @@ io.sockets.on('connection', function(socket) {
   require('./lib/hub')(socket, io);
 });
 
+//Redis configuration
+require('./lib/redisclient')(io);
+
 // Start server
 server.listen(config.port, config.ip, function () {
   console.log('Express server listening on %s:%d, in %s mode', config.ip, config.port, app.get('env'));

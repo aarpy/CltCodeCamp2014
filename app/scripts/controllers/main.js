@@ -6,59 +6,59 @@ app.controller('MainCtrl', function ($scope, $http, socket) {
   // Constants
   var MAX_MESSAGES = 50;
   var RANDOM_QUOTES = [
-    "Quote1",
-    "Quote2",
-    "Quote3",
-    "Quote4",
-    "Quote5",
-    "Quote6",
-    "Quote7",
+    'Quote1',
+    'Quote2',
+    'Quote3',
+    'Quote4',
+    'Quote5',
+    'Quote6',
+    'Quote7',
+    'Quote8',
   ];
 
   // Initialization
-  $scope.newmessage = "";
+  $scope.newmessage = '';
   $scope.usercount = 1;
-  $scope.username = "Guest";
-  $scope.servername = "...";
+  $scope.username = 'Guest';
+  $scope.servername = '...';
   $scope.messages = [];
 
   // Socket implementation
-  socket.on("init", function(data) {
+  socket.on('init', function(data) {
     $scope.username = data.username;
     $scope.usercount  = data.usercount;
     $scope.servername = data.servername;
 
-    addMessage({ type: "join", username: data.username });
+    addMessage({ type: 'join', username: data.username });
   });
 
-  socket.on("join", function(data) {
+  socket.on('join', function(data) {
     $scope.usercount  = data.usercount;
-    addMessage({ type: "join", username: data.username });
+    addMessage({ type: 'join', username: data.username });
   });
 
-  socket.on("message", function(data) {
-    $scope.usercount  = data.usercount;
-    addMessage({ type: "comment", username: data.username, content: data.content });
+  socket.on('message', function(data) {
+    addMessage({ type: 'comment', username: data.username, content: data.content });
   });
 
-  socket.on("left", function(data) {
+  socket.on('left', function(data) {
     $scope.usercount  = data.usercount;
-    addMessage({ type: "left", username: data.username });
+    addMessage({ type: 'left', username: data.username });
   });
 
   // Angular event handlers
   $scope.sendMessage = function() {
-    console.log("send message called: " + $scope.newmessage);
+    console.log('send message called: ' + $scope.newmessage);
     sendMessage($scope.newmessage);
   };
 
   $scope.sendHelloCodeCamp = function() {
-    console.log("sendHelloCodeCamp called");
-    sendMessage("Hello Code Camp!");
+    console.log('sendHelloCodeCamp called');
+    sendMessage('Hello Code Camp!');
   };
 
   $scope.sendRandomQuote = function() {
-    console.log("sendRandomQuote called");
+    console.log('sendRandomQuote called');
 
     var randomNumber = Math.floor((Math.random()*RANDOM_QUOTES.length));
     sendMessage(RANDOM_QUOTES[randomNumber]);
@@ -78,7 +78,6 @@ app.controller('MainCtrl', function ($scope, $http, socket) {
   }
 
   function sendMessage(content) {
-    addMessage({ type: "comment", username: $scope.username, content: content });
-    socket.emit("message", { content: content });
+    socket.emit('message', { content: content });
   }
 });
