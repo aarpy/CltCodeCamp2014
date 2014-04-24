@@ -26,10 +26,8 @@ console.log('configuring express and routes');
 require('./lib/config/express')(app);
 require('./lib/routes')(app);
 
-io.sockets.on('connection', function(socket) {
-  console.log('socket io started ---');
-  require('./lib/hub')(socket, io);
-});
+//Socket io configuration
+require('./lib/config/socketio')(app, io);
 
 //Redis configuration
 require('./lib/redisclient')(io);
