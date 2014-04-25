@@ -76,11 +76,17 @@ app.controller('MainCtrl', function ($scope, $http, toastr, socket) {
 
   function sendMessage(content) {
     if (content === null || content.length === 0) {
-      toastr.error('Enter a message to send', 'Error');
+      toastr.error('Enter a message to send', 'Error', {
+        "timeOut": "1000",
+        "positionClass": "toast-bottom-right"
+      });
       return;
     }
     console.log('sendMessage: ' + content);
     socket.emit('message', { content: content });
-    toastr.info('Your message is queued', 'Information');
+    toastr.info('Your message is queued', 'Information', {
+      "timeOut": "1000",
+      "positionClass": "toast-bottom-right"
+    });
   }
 });
