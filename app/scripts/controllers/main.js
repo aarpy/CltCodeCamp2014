@@ -28,8 +28,6 @@ app.controller('MainCtrl', function ($scope, $http, socket) {
     $scope.username = data.username;
     $scope.usercount  = data.usercount;
     $scope.servername = data.servername;
-
-    addMessage({ type: 'join', username: data.username });
   });
 
   socket.on('join', function(data) {
@@ -48,18 +46,14 @@ app.controller('MainCtrl', function ($scope, $http, socket) {
 
   // Angular event handlers
   $scope.sendMessage = function() {
-    console.log('send message called: ' + $scope.newmessage);
     sendMessage($scope.newmessage);
   };
 
   $scope.sendHelloCodeCamp = function() {
-    console.log('sendHelloCodeCamp called');
     sendMessage('Hello Code Camp!');
   };
 
   $scope.sendRandomQuote = function() {
-    console.log('sendRandomQuote called');
-
     var randomNumber = Math.floor((Math.random()*RANDOM_QUOTES.length));
     sendMessage(RANDOM_QUOTES[randomNumber]);
   };
@@ -71,6 +65,9 @@ app.controller('MainCtrl', function ($scope, $http, socket) {
 
   // local helper functions
   function addMessage(message) {
+    if (message === null || message.length === 0) {
+      return;
+    }
     if ($scope.messages.length > MAX_MESSAGES) {
       $scope.messages.splice(0, $scope.messages.length - MAX_MESSAGES);
     }
@@ -78,6 +75,10 @@ app.controller('MainCtrl', function ($scope, $http, socket) {
   }
 
   function sendMessage(content) {
+    if (content === null || content.length === 0) {
+      return;
+    }
+    console.log('sendMessage: ' + content);
     socket.emit('message', { content: content });
   }
 });
