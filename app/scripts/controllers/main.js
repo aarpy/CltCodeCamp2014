@@ -2,7 +2,7 @@
 
 var app = angular.module('cltCodeCamp2014App');
 
-app.controller('MainCtrl', function ($scope, $http, socket) {
+app.controller('MainCtrl', function ($scope, $http, toastr, socket) {
   // Constants
   var MAX_MESSAGES = 50;
   var RANDOM_QUOTES = [
@@ -76,9 +76,11 @@ app.controller('MainCtrl', function ($scope, $http, socket) {
 
   function sendMessage(content) {
     if (content === null || content.length === 0) {
+      toastr.error('Enter a message to send', 'Error');
       return;
     }
     console.log('sendMessage: ' + content);
     socket.emit('message', { content: content });
+    toastr.info('Your message is queued', 'Information');
   }
 });

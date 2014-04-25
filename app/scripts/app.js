@@ -5,6 +5,7 @@ var app = angular.module('cltCodeCamp2014App', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
+  'toastr',
   'btford.socket-io'
 ]);
 
