@@ -22,15 +22,15 @@ var server = http.createServer(app);
 console.log('starting socket.io');
 var io = require('socket.io').listen(server);
 
+//Redis configuration
+var redis = require('./lib/redisclient')(config, io);
+
 console.log('configuring express and routes');
 require('./lib/config/express')(app);
-require('./lib/routes')(app);
+require('./lib/routes')(app, redis);
 
 //Socket io configuration
-require('./lib/config/socketio')(app, io);
-
-//Redis configuration
-require('./lib/redisclient')(io);
+require('./lib/config/socketio')(app, io, redis);
 
 // Start server
 server.listen(config.port, config.ip, function () {
