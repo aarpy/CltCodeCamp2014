@@ -58,11 +58,6 @@ app.controller('MainCtrl', function ($scope, $http, toastr, socket) {
     sendMessage(RANDOM_QUOTES[randomNumber]);
   };
 
-  $scope.adduser = function() {
-    console.log('calling adduser');
-    $scope.usercount++;
-  };
-
   // local helper functions
   function addMessage(message) {
     if (message === null || message.length === 0) {
