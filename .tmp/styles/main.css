@@ -20999,6 +20999,8 @@ body {
 }
 
   .header h3 {
-    font-size: 14px;
+    font-size: 18px;
+    line-height: 30px;
+    font-weight: bold;
   }
 }

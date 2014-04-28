@@ -164,6 +164,8 @@ and (min-device-width : 320px)
 and (max-device-width : 480px) {
 /* Styles */
   .header h3 {
-    font-size: 14px;
+    font-size: 18px;
+    line-height: 30px;
+    font-weight: bold;
   }
 }
