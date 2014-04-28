@@ -20932,6 +20932,22 @@ body {
   margin-bottom: 20px;
 }
 
+@media -sass-debug-info {
+  filename {
+    font-family: file\:\/\/\/home\/aarpy\/Workspace\/CltCodeCamp2014\/app\/styles\/main\.scss;
+  }
+
+  line {
+    font-family: \00003144;
+  }
+}
+
+.loading {
+  text-align: center;
+  padding-top: 100px;
+  height: 300px;
+}
+
 /* Responsive: Portrait tablets and up */
 
 @media screen and (min-width: 768px) {
@@ -20941,7 +20957,7 @@ body {
     }
 
     line {
-      font-family: \00003146;
+      font-family: \00003152;
     }
 }
 
@@ -20957,7 +20973,7 @@ body {
     }
 
     line {
-      font-family: \00003153;
+      font-family: \00003159;
     }
 }
 
@@ -20976,7 +20992,7 @@ body {
     }
 
     line {
-      font-family: \00003158;
+      font-family: \00003164;
     }
 }
 
@@ -20994,7 +21010,7 @@ body {
     }
 
     line {
-      font-family: \00003166;
+      font-family: \00003172;
     }
 }
 
