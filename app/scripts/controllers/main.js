@@ -56,7 +56,22 @@ app.controller('MainCtrl', function ($scope, $http, toastr, socket) {
     $scope.servernames.push(data.servername);
     $scope.servernamesDisplay = $scope.servernames.join(', ');
     toastr.info(data.servername + ' server added', 'Information', {
-      'timeOut': '30000',
+      'timeOut': '100000',
+      'positionClass': 'toast-bottom-right'
+    });
+  });
+
+  socket.on('server:left', function(data) {
+    // removing server name
+    for(var i = $scope.servernames.length - 1; i >= 0; i--) {
+        if($scope.servernames[i] === data.servername) {
+           $scope.servernames.splice(i, 1);
+           break;
+        }
+    }
+    $scope.servernamesDisplay = $scope.servernames.join(', ');
+    toastr.info(data.servername + ' server removed', 'Warning', {
+      'timeOut': '100000',
       'positionClass': 'toast-bottom-right'
     });
   });

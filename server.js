@@ -27,7 +27,7 @@ var redis = require('./lib/redisclient')(config, io);
 
 console.log('configuring express and routes');
 require('./lib/config/express')(app);
-require('./lib/routes')(app, redis);
+require('./lib/routes')(app, redis, io);
 
 //Socket io configuration
 require('./lib/config/socketio')(app, io, redis);
